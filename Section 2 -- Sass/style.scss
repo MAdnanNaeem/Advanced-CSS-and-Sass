@@ -1,0 +1,101 @@
+// TODO: 1) Inhereted 2)@mixin 3)variables 4) @functions 5) @extend
+
+//! @mixin --> A variable which contains the huge lines of Reusable code;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+$color-primary: #f9ed69;
+$color-secondary: #f08a5d;
+$color-tertiary: #b83b5e;
+$color-text-dark: #333;
+$color-text-light: #eee;
+$width-button: 150px;
+
+@function sum($a, $b) {
+  @return $a + $b;
+}
+
+// * @mixin helps us to avoid from DRY (Don't Repeat Yourself)
+@mixin clearfix {
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
+
+@mixin style-link-text($color) {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $color;
+}
+
+nav {
+  margin: sum(20, 10) * 1px;
+  background-color: $color-primary;
+
+  //* @include --> is used to recall the mixin with a particular name;
+  @include clearfix();
+}
+
+.navigation {
+  list-style: none;
+  float: left;
+
+  //* Nested li into ul ---> (.navigation li )
+
+  li {
+    display: inline-block;
+    margin-left: 30px;
+
+    // & symbol denotes the reference of the parent selectors (& = .navigation li)
+    &:first-child {
+      margin-left: 0;
+    }
+
+    a:link {
+      @include style-link-text($color-text-dark);
+    }
+  }
+}
+
+.button {
+  float: right;
+}
+
+// ! %extend-name --> To avoid DRY, we put all our repetative code in the extend-placeholder to reuse it.
+// ! The main difference between Extend & mixnin is that the code itself copied in the case of mixin but in the case of extend only selectors with the same code will be copied and joined.x
+%btn-placeholder {
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  width: $width-button;
+  border-radius: 100px;
+  @include style-link-text($color-text-light);
+}
+
+.btn-main {
+  &:link {
+    // * calling the extend-placeholder
+    @extend %btn-placeholder;
+    background-color: $color-secondary;
+  }
+
+  &:hover {
+    // built in color in Sass
+    background-color: darken($color-secondary, 15%);
+  }
+}
+.btn-second {
+  &:link {
+    @extend %btn-placeholder;
+    background-color: $color-tertiary;
+  }
+
+  &:hover {
+    background-color: lighten($color-tertiary, 10%);
+  }
+}
