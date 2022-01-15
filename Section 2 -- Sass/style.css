@@ -7,7 +7,6 @@ nav {
   margin: 30px;
   background-color: #f9ed69;
 }
-
 nav::after {
   content: "";
   clear: both;
@@ -18,16 +17,13 @@ nav::after {
   list-style: none;
   float: left;
 }
-
 .navigation li {
   display: inline-block;
   margin-left: 30px;
 }
-
 .navigation li:first-child {
   margin-left: 0;
 }
-
 .navigation li a:link {
   text-decoration: none;
   text-transform: uppercase;
@@ -38,7 +34,7 @@ nav::after {
   float: right;
 }
 
-.btn-main:link, .btn-second:link {
+.btn-second:link, .btn-main:link {
   padding: 10px;
   display: inline-block;
   text-align: center;
@@ -52,7 +48,6 @@ nav::after {
 .btn-main:link {
   background-color: #f08a5d;
 }
-
 .btn-main:hover {
   background-color: #ea5717;
 }
@@ -60,8 +55,6 @@ nav::after {
 .btn-second:link {
   background-color: #b83b5e;
 }
-
 .btn-second:hover {
   background-color: #cb5b7b;
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
